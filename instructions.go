@@ -41,7 +41,7 @@ const (
 	lsr
 	nop
 	ora
-	PHA
+	pha
 	php
 	pla
 	plp
@@ -101,7 +101,7 @@ var InstructionNames = map[Instruction]string{
 	lsr: "lsr",
 	nop: "nop",
 	ora: "ora",
-	PHA: "PHA",
+	pha: "pha",
 	php: "php",
 	pla: "pla",
 	plp: "plp",
@@ -240,7 +240,7 @@ var Instructions = map[uint8]InstructionInfo{
 	0x19: {ora, 0x19, AbsoluteY, 4, (*CPU).ora},
 	0x01: {ora, 0x01, IndexedIndirect, 6, (*CPU).ora},
 	0x11: {ora, 0x11, IndirectIndexed, 5, (*CPU).ora},
-	0x48: {PHA, 0x48, Implied, 3, (*CPU).PHA},
+	0x48: {pha, 0x48, Implied, 3, (*CPU).pha},
 	0x08: {php, 0x08, Implied, 3, (*CPU).php},
 	0x68: {pla, 0x68, Implied, 4, (*CPU).pla},
 	0x28: {plp, 0x28, Implied, 4, (*CPU).plp},
@@ -945,8 +945,8 @@ func (c *CPU) ora() uint8 {
 	return 1
 }
 
-// PHA pushes accumulator
-func (c *CPU) PHA() uint8 {
+// pha pushes accumulator
+func (c *CPU) pha() uint8 {
 	// Push the accumulator to the stack
 	c.pushByte(c.r.a)
 
