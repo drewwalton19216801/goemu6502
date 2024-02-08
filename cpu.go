@@ -72,7 +72,7 @@ func (c *CPU) Reset() {
 	// P == 0x00 | U | I
 	c.r.p = 0x00 | uint8(Unused) | uint8(InterruptDisable)
 	// PC == read from 0xFFFC and 0xFFFD
-	c.r.pc = uint16(c.bus.Read(0xFFFC))<<8 | uint16(c.bus.Read(0xFFFD))
+	c.r.pc = uint16(c.bus.Read(0xFFFC)) | uint16(c.bus.Read(0xFFFD))<<8
 }
 
 func (c *CPU) interrupt() {
