@@ -1,6 +1,9 @@
 package goemu6502
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type (
 	Registers struct {
@@ -24,6 +27,7 @@ type (
 	}
 
 	CPU struct {
+		mutex  sync.Mutex
 		r      Registers
 		i      InternalRegisters
 		status InternalStatus
@@ -66,6 +70,9 @@ func (c *CPU) getFlag(flag StatusFlag) bool {
 }
 
 func (c *CPU) Reset() {
+	c.mutex.Lock()
+	defer c.mutex.Unlock()
+
 	c.r.a = 0x00
 	c.r.x = 0x00
 	c.r.y = 0x00
@@ -113,6 +120,9 @@ func (c *CPU) Complete() bool {
 }
 
 func (c *CPU) Clock() {
+	c.mutex.Lock()
+	defer c.mutex.Unlock()
+
 	if c.status.Cycles == 0 {
 		c.status.currentInstructionString = c.DisassembleAt(c.r.pc)
 
@@ -254,6 +264,9 @@ func (c *CPU) popWord() uint16 {
 }
 
 func (c *CPU) String() string {
+	c.mutex.Lock()
+	defer c.mutex.Unlock()
+
 	return fmt.Sprintf("A: %02X X: %02X Y: %02X P: %02X SP: %02X PC: %04X",
 		c.r.a, c.r.x, c.r.y, c.r.p, c.r.sp, c.r.pc)
 }
