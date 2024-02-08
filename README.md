@@ -14,7 +14,8 @@ Seemed like a fun thing to do.
 
 ## Running
 
-See above.
+Some examples are included in the "examples" directory. You can run them as follows:
+`go run ./examples/{example_name}`
 
 ## Usage
 
