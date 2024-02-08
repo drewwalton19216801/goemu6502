@@ -1,7 +1,7 @@
 # GoEmu6502
 
 ## What is this?
-A 6502 emulation library written in Go!
+A 6502 emulation library written in Go! It intends to be as cycle-timing-accurate as possible, though it may fail some tests. Please file a GitHub issue if this is the case.
 
 
 ## Why is this?
