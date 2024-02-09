@@ -8,6 +8,8 @@ func main() {
 	fmt.Println("Hello 6502 World!")
 
 	m := NewMachine()
+	m.clock.SetCPUFrequency(50)
+	m.clock.SetSysFrequency(m.clock.cpuFrequency * 10)
 
 	// Set the reset vector to 0x8000
 	m.bus.Write(0xFFFC, 0x00)
