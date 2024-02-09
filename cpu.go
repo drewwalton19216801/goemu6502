@@ -119,7 +119,7 @@ func (c *CPU) Complete() bool {
 	return c.status.Cycles == 0
 }
 
-func (c *CPU) Clock() {
+func (c *CPU) Tick() {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 
@@ -264,9 +264,6 @@ func (c *CPU) popWord() uint16 {
 }
 
 func (c *CPU) String() string {
-	c.mutex.Lock()
-	defer c.mutex.Unlock()
-
-	return fmt.Sprintf("A: %02X X: %02X Y: %02X P: %02X SP: %02X PC: %04X",
-		c.r.a, c.r.x, c.r.y, c.r.p, c.r.sp, c.r.pc)
+	return fmt.Sprintf("Current Instruction: %s\nA: %02X X: %02X Y: %02X P: %02X SP: %02X PC: %04X\n",
+		c.status.currentInstructionString, c.r.a, c.r.x, c.r.y, c.r.p, c.r.sp, c.r.pc)
 }

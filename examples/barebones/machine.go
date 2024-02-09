@@ -22,7 +22,7 @@ func NewMachine() *Machine {
 func (m *Machine) Run() {
 	// Clock the CPU five times per second, printing the CPU string every time
 	for {
-		m.cpu.Clock()
+		m.cpu.Tick()
 		fmt.Println(m.cpu.String())
 		time.Sleep(time.Millisecond * 200)
 	}
