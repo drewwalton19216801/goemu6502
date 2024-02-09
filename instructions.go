@@ -62,6 +62,8 @@ const (
 	txa
 	txs
 	tya
+
+	xxx
 )
 
 // InstructionNames is a map of instruction names
@@ -122,6 +124,8 @@ var InstructionNames = map[Instruction]string{
 	txa: "txa",
 	txs: "txs",
 	tya: "tya",
+
+	xxx: "xxx",
 }
 
 // InstructionInfo contains information about an instruction
@@ -286,10 +290,123 @@ var Instructions = map[uint8]InstructionInfo{
 	0x8A: {txa, 0x8A, Implied, 2, (*CPU).txa},
 	0x9A: {txs, 0x9A, Implied, 2, (*CPU).txs},
 	0x98: {tya, 0x98, Implied, 2, (*CPU).tya},
+
+	// Anything else is illegal
+	0x80: {xxx, 0x80, Implied, 0, (*CPU).xxx},
+	0x02: {xxx, 0x02, Implied, 0, (*CPU).xxx},
+	0x12: {xxx, 0x12, Implied, 0, (*CPU).xxx},
+	0x22: {xxx, 0x22, Implied, 0, (*CPU).xxx},
+	0x32: {xxx, 0x32, Implied, 0, (*CPU).xxx},
+	0x42: {xxx, 0x42, Implied, 0, (*CPU).xxx},
+	0x52: {xxx, 0x52, Implied, 0, (*CPU).xxx},
+	0x62: {xxx, 0x62, Implied, 0, (*CPU).xxx},
+	0x72: {xxx, 0x72, Implied, 0, (*CPU).xxx},
+	0x92: {xxx, 0x92, Implied, 0, (*CPU).xxx},
+	0xB2: {xxx, 0xB2, Implied, 0, (*CPU).xxx},
+	0xD2: {xxx, 0xD2, Implied, 0, (*CPU).xxx},
+	0xF2: {xxx, 0xF2, Implied, 0, (*CPU).xxx},
+
+	0x03: {xxx, 0x03, Implied, 0, (*CPU).xxx},
+	0x13: {xxx, 0x13, Implied, 0, (*CPU).xxx},
+	0x23: {xxx, 0x23, Implied, 0, (*CPU).xxx},
+	0x33: {xxx, 0x33, Implied, 0, (*CPU).xxx},
+	0x43: {xxx, 0x43, Implied, 0, (*CPU).xxx},
+	0x53: {xxx, 0x53, Implied, 0, (*CPU).xxx},
+	0x63: {xxx, 0x63, Implied, 0, (*CPU).xxx},
+	0x73: {xxx, 0x73, Implied, 0, (*CPU).xxx},
+	0x83: {xxx, 0x83, Implied, 0, (*CPU).xxx},
+	0x93: {xxx, 0x93, Implied, 0, (*CPU).xxx},
+	0xA3: {xxx, 0xA3, Implied, 0, (*CPU).xxx},
+	0xB3: {xxx, 0xB3, Implied, 0, (*CPU).xxx},
+	0xC3: {xxx, 0xC3, Implied, 0, (*CPU).xxx},
+	0xD3: {xxx, 0xD3, Implied, 0, (*CPU).xxx},
+	0xE3: {xxx, 0xE3, Implied, 0, (*CPU).xxx},
+	0xF3: {xxx, 0xF3, Implied, 0, (*CPU).xxx},
+
+	0x04: {xxx, 0x04, Implied, 0, (*CPU).xxx},
+	0x14: {xxx, 0x14, Implied, 0, (*CPU).xxx},
+	0x34: {xxx, 0x34, Implied, 0, (*CPU).xxx},
+	0x44: {xxx, 0x44, Implied, 0, (*CPU).xxx},
+	0x54: {xxx, 0x54, Implied, 0, (*CPU).xxx},
+	0x64: {xxx, 0x64, Implied, 0, (*CPU).xxx},
+	0x74: {xxx, 0x74, Implied, 0, (*CPU).xxx},
+	0xD4: {xxx, 0xD4, Implied, 0, (*CPU).xxx},
+	0xF4: {xxx, 0xF4, Implied, 0, (*CPU).xxx},
+
+	0x07: {xxx, 0x07, Implied, 0, (*CPU).xxx},
+	0x17: {xxx, 0x17, Implied, 0, (*CPU).xxx},
+	0x27: {xxx, 0x27, Implied, 0, (*CPU).xxx},
+	0x37: {xxx, 0x37, Implied, 0, (*CPU).xxx},
+	0x47: {xxx, 0x47, Implied, 0, (*CPU).xxx},
+	0x57: {xxx, 0x57, Implied, 0, (*CPU).xxx},
+	0x67: {xxx, 0x67, Implied, 0, (*CPU).xxx},
+	0x77: {xxx, 0x77, Implied, 0, (*CPU).xxx},
+	0x87: {xxx, 0x87, Implied, 0, (*CPU).xxx},
+	0x97: {xxx, 0x97, Implied, 0, (*CPU).xxx},
+	0xA7: {xxx, 0xA7, Implied, 0, (*CPU).xxx},
+	0xB7: {xxx, 0xB7, Implied, 0, (*CPU).xxx},
+	0xC7: {xxx, 0xC7, Implied, 0, (*CPU).xxx},
+	0xD7: {xxx, 0xD7, Implied, 0, (*CPU).xxx},
+	0xE7: {xxx, 0xE7, Implied, 0, (*CPU).xxx},
+	0xF7: {xxx, 0xF7, Implied, 0, (*CPU).xxx},
+
+	0x89: {xxx, 0x88, Implied, 0, (*CPU).xxx},
+
+	0x1A: {xxx, 0x1A, Implied, 0, (*CPU).xxx},
+	0x3A: {xxx, 0x3A, Implied, 0, (*CPU).xxx},
+	0x5A: {xxx, 0x5A, Implied, 0, (*CPU).xxx},
+	0x7A: {xxx, 0x7A, Implied, 0, (*CPU).xxx},
+	0xDA: {xxx, 0xDA, Implied, 0, (*CPU).xxx},
+	0xFA: {xxx, 0xFA, Implied, 0, (*CPU).xxx},
+
+	0x0B: {xxx, 0x0B, Implied, 0, (*CPU).xxx},
+	0x1B: {xxx, 0x1B, Implied, 0, (*CPU).xxx},
+	0x2B: {xxx, 0x2B, Implied, 0, (*CPU).xxx},
+	0x3B: {xxx, 0x3B, Implied, 0, (*CPU).xxx},
+	0x4B: {xxx, 0x4B, Implied, 0, (*CPU).xxx},
+	0x5B: {xxx, 0x5B, Implied, 0, (*CPU).xxx},
+	0x6B: {xxx, 0x6B, Implied, 0, (*CPU).xxx},
+	0x7B: {xxx, 0x7B, Implied, 0, (*CPU).xxx},
+	0x8B: {xxx, 0x8B, Implied, 0, (*CPU).xxx},
+	0x9B: {xxx, 0x9B, Implied, 0, (*CPU).xxx},
+	0xAB: {xxx, 0xAB, Implied, 0, (*CPU).xxx},
+	0xBB: {xxx, 0xBB, Implied, 0, (*CPU).xxx},
+	0xCB: {xxx, 0xCB, Implied, 0, (*CPU).xxx},
+	0xDB: {xxx, 0xDB, Implied, 0, (*CPU).xxx},
+	0xEB: {xxx, 0xEB, Implied, 0, (*CPU).xxx},
+	0xFB: {xxx, 0xFB, Implied, 0, (*CPU).xxx},
+
+	0x0C: {xxx, 0x0C, Implied, 0, (*CPU).xxx},
+	0x1C: {xxx, 0x1C, Implied, 0, (*CPU).xxx},
+	0x3C: {xxx, 0x3C, Implied, 0, (*CPU).xxx},
+	0x5C: {xxx, 0x5C, Implied, 0, (*CPU).xxx},
+	0x7C: {xxx, 0x7C, Implied, 0, (*CPU).xxx},
+	0x9C: {xxx, 0x9C, Implied, 0, (*CPU).xxx},
+	0xDC: {xxx, 0xDC, Implied, 0, (*CPU).xxx},
+	0xFC: {xxx, 0xFC, Implied, 0, (*CPU).xxx},
+
+	0x9E: {xxx, 0x9E, Implied, 0, (*CPU).xxx},
+
+	0x0F: {xxx, 0x0F, Implied, 0, (*CPU).xxx},
+	0x1F: {xxx, 0x1F, Implied, 0, (*CPU).xxx},
+	0x2F: {xxx, 0x2F, Implied, 0, (*CPU).xxx},
+	0x3F: {xxx, 0x3F, Implied, 0, (*CPU).xxx},
+	0x4F: {xxx, 0x4F, Implied, 0, (*CPU).xxx},
+	0x5F: {xxx, 0x5F, Implied, 0, (*CPU).xxx},
+	0x6F: {xxx, 0x6F, Implied, 0, (*CPU).xxx},
+	0x7F: {xxx, 0x7F, Implied, 0, (*CPU).xxx},
+	0x8F: {xxx, 0x8F, Implied, 0, (*CPU).xxx},
+	0x9F: {xxx, 0x9F, Implied, 0, (*CPU).xxx},
+	0xAF: {xxx, 0xAF, Implied, 0, (*CPU).xxx},
+	0xBF: {xxx, 0xBF, Implied, 0, (*CPU).xxx},
+	0xCF: {xxx, 0xCF, Implied, 0, (*CPU).xxx},
+	0xDF: {xxx, 0xDF, Implied, 0, (*CPU).xxx},
+	0xEF: {xxx, 0xEF, Implied, 0, (*CPU).xxx},
+	0xFF: {xxx, 0xFF, Implied, 0, (*CPU).xxx},
 }
 
 // placeholder for illegal instructions
-func (c *CPU) XXX() uint8 {
+func (c *CPU) xxx() uint8 {
 	// Panic
 	panic("Illegal or unsupported instruction")
 }
